@@ -1,17 +1,27 @@
-h1 {
+.head1 {
     border: solid 4px black;
-    width: 25%;
     text-align: center;
     background-color: white;
+    padding: 10px 40px;
+    position: relative; left:-10%;
+}
+
+.head2 {
+  border: solid 4px black;
+  text-align: center;
+  background-color: white;
+  padding: 10px 40px;
+  width: 40%;
+  position: relative; left:10%;
 }
 
 div {
     border: solid 3px black;
     text-align: center;
-    width: 25%;
     background-color: white;
     text-decoration: none;
     color: black;
+    width: 80%;
 }
 
 a {
@@ -46,5 +56,5 @@ body {
   }
 
 .kropp {
-  position: relative; top:20px; left:35%;
+  position: absolute; top:20px; left:35%;
 }
