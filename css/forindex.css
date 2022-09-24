@@ -15,6 +15,7 @@
   position: relative; left:10%;
 }
 
+
 div {
     border: solid 3px black;
     text-align: center;
@@ -47,7 +48,7 @@ a:active {
 h3:hover {
   transform: rotate(360deg);
   transition-duration: 2s;
-  transition-delay: 500ms;
+  transition-delay: 501ms;
 }
 
 body {
