@@ -12,9 +12,10 @@
 }
 body {
     background-image: url('../bilder/timeplan.jpg');
+    font-family: 'Calibi Light', sans-serif;
 }
 .switch {
-    position: absolute; left:45%; top:37.1%;
+    position: absolute; left:42%; top:37.1%;
 }
 .first {
     padding: 10px;

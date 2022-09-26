@@ -8,36 +8,70 @@ html,         body {
     height:100%;
     background-position: center;
     background-color: cyan;
+    font-family: 'Calibi Light', sans-serif;
 }
 .box {
+  border: solid 4px black;
+  text-align: center;
+  background-color: white;
+  width:35%;
+  height: fit-content;
+  padding: 16px;
+  position: absolute; left:29%; top:10%;
+}
+span {
+ color:black;
+ background-color: yellow;
+}
+.hl {
+ color: #0C71E0;
+}
+.link1 {
+background-color: lightgray;
+text-decoration: none;
+color:black;
+}
+
+.link1:active {
+  color:yellow;
+  transform:scale(2.5);
+}
+.link:active {
+  color:yellow;
+  transform: scale(2.5);
+}
+
+.link:hover {
+  transform: rotate(2160deg);
+  transition-duration: 500ms;
+  transition-delay: 500ms;
+  text-transform: uppercase;
+  color:blueviolet;
+  background-color: pink;
+  text-decoration: underline solid 4px black;
+  }
+
+.link1:hover {
+  transform: rotate(2160deg);
+  transition-duration: 500ms;
+  transition-delay: 500ms;
+  text-transform: uppercase;
+  color:blueviolet;
+  background-color: pink;
+  text-decoration: underline solid 4px black;
+  }
+
+.homepage {
+  position:absolute; left:80px; top:87%;
   border: solid 4px black;
   text-align: center;
   background-color: white;
   width:fit-content;
   height: fit-content;
   padding: 16px;
-}
-span {
- color:black;
- background-color: yellow;
-}
-#hl {
- color: #0C71E0;
-}
-#link {
-background-color: lightgray;
-color:black;
-transition-duration: 1s;
-}
-a {
-text-decoration: none;
-color:black;
-transition-duration: 1s;
-transform: rotate(0deg);
-}
-#homepage {
-  position:absolute; left:80px; top:85%;
+  text-decoration: none;
 } 
-#box1 {
-  position:absolute; left:35%; top:80px;
+.hp {
+  text-decoration: none;
+  color:black;
 }
