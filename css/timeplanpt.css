@@ -1,26 +1,35 @@
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+.tabell  {border-collapse:collapse;border-spacing:0;}
+.tabell td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+.tabell th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+.tabell .celle{text-align:left;vertical-align:top}
 
-.tg { 
+.tabell { 
     position:absolute; left:30%; top:15%;
     background-color: rgb(130, 231, 231);
     border: 3px solid black;
 }
-body {
-    background-image: url('../bilder/timeplan.jpg');
+body, html {
     font-family: 'Calibi Light', sans-serif;
+    height: 91%;
+}
+.bg {
+    background-image: url('../bilder/timeplan.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
 }
 .switch {
     position: absolute; left:42%; top:37.1%;
 }
+.skole {
+    position: absolute; left:38%; top:45%;
+}
 .first {
     padding: 10px;
     background-color: black;
-    border-radius: 5px;
+    border-radius: 32px;
     font-weight: bold;
     color: white;
     text-decoration: none;
@@ -40,4 +49,14 @@ body {
     transition-duration: 1s;
     transition-delay: 200ms;
     font-size: 110%;
+}
+
+.nesbru { 
+    padding: 10px;
+    background-color: lightskyblue;
+    border-radius: 20px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+    border:black 4px solid;
 }
