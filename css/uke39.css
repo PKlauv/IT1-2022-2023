@@ -22,6 +22,9 @@ html,         body {
 
 body:active { 
   background-image: url(../bilder/scaryjpg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
 }
 span {
  color:black;
