@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passord</title>
+</head>
+
+<body>
+    <script>
+        let pass;
+        do {
+            pass = prompt("Skriv passord")
+            if (pass == 'pKbESt') {
+                document.write('Du valgte riktig passord!!');
+            } else if (pass == '?lengde') {
+                alert('6');
+
+            } else if (pass == '?1') {
+                alert('p')
+            } else if (pass == '?2') {
+                alert('K')
+            } else if (pass == '?siste') {
+                alert('t')
+            } else if (pass == '?store') {
+                alert('PKBEST')
+            } else if (pass == '?små') {
+                alert('pkbest')
+            } else {
+                alert('Passordet er feil')
+            }
+        } while (pass != 'pKbESt')
+    </script>
+</body>
+
+</html>
