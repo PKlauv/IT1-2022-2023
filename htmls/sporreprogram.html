@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sporreprogram</title>
+    <style>
+        .main {
+            text-align: center;
+        }
+        #imgBilde {
+            border: 6px solid gray;
+        }
+    </style>
+</head>
+
+<body class="main">
+    <!-- html coden vår-->
+    <h1 id="sporsmaal"> Her er spørsmålet </h1>
+    <input id="inputsvar" type="text" onfocus="this.value=''">
+    <button id="buttonOk"> Klikk for og svare </button>
+    <button id="buttonNeste"> Neste Spørsmål</button>
+    <button id="buttonForrige"> Forrige Spørsmål</button>
+    <h1 id="alternativ1">Alt1</h1>
+    <h1 id="alternativ2">Alt2</h1>
+    <h1 id="alternativ3">Alt3</h1>
+        <br> <br>
+    <img id="imgBilde" src="" width="400px" alt="fant ikke bildet">
+    <script>
+        // Javascript coden vår
+        var alternativ1 = document.getElementById("alternativ1");
+        var alternativ2 = document.getElementById("alternativ2");
+        var alternativ3 = document.getElementById("alternativ3");
+        var sporsmaal = document.getElementById("sporsmaal");
+        var inputsvar = document.getElementById("inputsvar");
+        var buttonOk = document.getElementById("buttonOk");
+        var buttonForrige = document.getElementById("buttonForrige");
+        var buttonNeste = document.getElementById("buttonNeste");
+        var imgBilde = document.getElementById("imgBilde");
+        var spmNr = 0;
+        buttonForrige.disabled = true;
+
+        //array med spørsmålene
+        var sporsmaalOgSvar = [
+            { q: "Hvem er G.O.A.T i fotball?", a1: "Maradona", a2:"Ronaldo", a3:"Messi", riktig:"3", bilde:"../bilder/agoat.jpg" },
+            { q: "Mj eller Lebron?", a1:"MJ", a2:"Lebron", a3:"kobe best", riktig:"1", bilde:"../bilder/mjoglebron.jpg"},
+            { q: "Hva heter kobe til etternavn?", a1:"Iverson", a2:"Bryant", a3:"Jordan", riktig:"3", bilde:"../bilder/kobe.jpg" }
+        ]
+
+
+        function settOppSkjermbilde() {
+            sporsmaal.innerHTML = sporsmaalOgSvar[spmNr].q;
+            imgBilde.src = sporsmaalOgSvar[spmNr].bilde;
+            alternativ1.innerHTML = sporsmaalOgSvar[spmNr].a1;
+            alternativ2.innerHTML = sporsmaalOgSvar[spmNr].a2;
+            alternativ3.innerHTML = sporsmaalOgSvar[spmNr].a3;
+        }
+
+        //initiering av første spørsmål:
+        settOppSkjermbilde();
+
+        function sjekkSvar() {
+            if (inputsvar.value.toLowerCase() == sporsmaalOgSvar[spmNr].riktig.toLowerCase()) {
+                alert("Riktig svar, Herlig.")
+            }
+            else {
+                alert("Feil svar, du er ikke smart.")
+            }
+        }
+        buttonOk.addEventListener("click", sjekkSvar)
+
+        //funksjon som skjer når man trykker på neste spørsmål knappen
+        function nesteSporsmaal() {
+            buttonForrige.disabled = false;
+            inputsvar.value ='';
+            if (spmNr < sporsmaalOgSvar.length - 1) {
+                spmNr++
+                settOppSkjermbilde();
+            }
+            if (spmNr == sporsmaalOgSvar.length - 1) {
+                buttonNeste.disabled = true;
+            }
+
+        }
+        buttonNeste.addEventListener("click", nesteSporsmaal);
+
+
+                //funksjon som skjer når man trykker på forrige spørsmål knappen
+        function forrigeSporsmaal() {
+            buttonNeste.disabled = false;
+            inputsvar.value ='';
+            if (spmNr >= 0) {
+                spmNr--
+                settOppSkjermbilde();
+            } if (spmNr == 0) {
+                buttonForrige.disabled = true;
+            }
+        }
+        buttonForrige.addEventListener("click", forrigeSporsmaal);
+
+
+
+
+    </script>
+</body>
+
+</html>
