@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
     <title>sporreprogram</title>
     <style>
         .main {
             text-align: center;
         }
+
         #imgBilde {
             border: 6px solid gray;
         }
@@ -17,16 +18,26 @@
 </head>
 
 <body class="main">
+    <!-- audio filer til riktig og feil svar-->
+    <audio id="riktigLyd">
+        <source src="../lyd/correct.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="feilLyd">
+        <source src="../lyd/wrong.mp3" type="audio/mpeg">
+    </audio>
     <!-- html coden vår-->
     <h1 id="sporsmaal"> Her er spørsmålet </h1>
     <input id="inputsvar" type="text" onfocus="this.value=''">
+    <input id="nyttSpmSvar" type="text" hidden="true">    
     <button id="buttonOk"> Klikk for og svare </button>
     <button id="buttonNeste"> Neste Spørsmål</button>
     <button id="buttonForrige"> Forrige Spørsmål</button>
+
+    <button id="admin"> Admin </button>
     <h1 id="alternativ1">Alt1</h1>
     <h1 id="alternativ2">Alt2</h1>
     <h1 id="alternativ3">Alt3</h1>
-        <br> <br>
+    <br> <br>
     <img id="imgBilde" src="" width="400px" alt="fant ikke bildet">
     <script>
         // Javascript coden vår
@@ -40,41 +51,50 @@
         var buttonNeste = document.getElementById("buttonNeste");
         var imgBilde = document.getElementById("imgBilde");
         var spmNr = 0;
+        var riktigLyd = document.getElementById("riktigLyd");
+        var feilLyd = document.getElementById("feilLyd");
+        var nyttSpmSvar = document.getElementById("nyttSpmSvar");
+        var admin = document.getElementById("admin");
+        admin.hidden = true;
         buttonForrige.disabled = true;
+
 
         //array med spørsmålene
         var sporsmaalOgSvar = [
-            { q: "Hvem er G.O.A.T i fotball?", a1: "Maradona", a2:"Ronaldo", a3:"Messi", riktig:"3", bilde:"../bilder/agoat.jpg" },
-            { q: "Mj eller Lebron?", a1:"MJ", a2:"Lebron", a3:"kobe best", riktig:"1", bilde:"../bilder/mjoglebron.jpg"},
-            { q: "Hva heter kobe til etternavn?", a1:"Iverson", a2:"Bryant", a3:"Jordan", riktig:"3", bilde:"../bilder/kobe.jpg" }
+            { q: "Hvem er goat?", a1: "1: Maradona", a2: "2: Ronaldo", a3: "3: Messi", riktig: "3", bilde: "../bilder/agoat.jpg" },
+            { q: "Mj eller Lebron?", a1: "1: MJ", a2: "2: Lebron", a3: "3: kobe best", riktig: "1", bilde: "../bilder/mjoglebron.jpg" },
+            { q: "Hva heter kobe til etternavn?", a1: "1: Iverson", a2: "2: Bryant", a3: "3: Jordan", riktig: "2", bilde: "../bilder/kobe.jpg" },
+            { q: "Hvem vant fotball VM i 2023?", a1:"",a2:"",a3:"", riktig: "Argentina", bilde: "../bilder/VM.jpg"}
         ]
 
-
+        // funksjon som setter opp det som er på bildet
         function settOppSkjermbilde() {
             sporsmaal.innerHTML = sporsmaalOgSvar[spmNr].q;
             imgBilde.src = sporsmaalOgSvar[spmNr].bilde;
             alternativ1.innerHTML = sporsmaalOgSvar[spmNr].a1;
             alternativ2.innerHTML = sporsmaalOgSvar[spmNr].a2;
             alternativ3.innerHTML = sporsmaalOgSvar[spmNr].a3;
-        }
-
-        //initiering av første spørsmål:
+            }   
+        //initiering av første spørsmål
         settOppSkjermbilde();
 
+        //funksjonen som skjekker om svaret er riktig eller galt og spiller en audio ut fra svaret
         function sjekkSvar() {
             if (inputsvar.value.toLowerCase() == sporsmaalOgSvar[spmNr].riktig.toLowerCase()) {
-                alert("Riktig svar, Herlig.")
+                riktigLyd.play();
+                alert("Riktig svar, Herlig.");
             }
             else {
-                alert("Feil svar, du er ikke smart.")
+                feilLyd.play();
+                alert("Feil svar, du er ikke smart.");
             }
         }
-        buttonOk.addEventListener("click", sjekkSvar)
+        buttonOk.addEventListener("click", sjekkSvar);
 
         //funksjon som skjer når man trykker på neste spørsmål knappen
         function nesteSporsmaal() {
             buttonForrige.disabled = false;
-            inputsvar.value ='';
+            inputsvar.value = '';
             if (spmNr < sporsmaalOgSvar.length - 1) {
                 spmNr++
                 settOppSkjermbilde();
@@ -87,23 +107,74 @@
         buttonNeste.addEventListener("click", nesteSporsmaal);
 
 
-                //funksjon som skjer når man trykker på forrige spørsmål knappen
+        //funksjon som skjer når man trykker på forrige spørsmål knappen
         function forrigeSporsmaal() {
             buttonNeste.disabled = false;
-            inputsvar.value ='';
+            inputsvar.value = '';
             if (spmNr >= 0) {
                 spmNr--
                 settOppSkjermbilde();
-            } if (spmNr == 0) {
+            } 
+            if (spmNr == 0) {
                 buttonForrige.disabled = true;
-            }
+            }    
         }
         buttonForrige.addEventListener("click", forrigeSporsmaal);
 
+        //denne funksjonen gjør at du kommer i "admin mode" når du trykker på admin knappen
+        function adminFunction() {
+            sporsmaal.innerHTML = "Skriv nytt spørsmål i første inputfelt, svar i andre inputfelt.";
+            inputsvar.placeholder = "Skriv et spørsmål";
+            nyttSpmSvar.hidden = false;
+            nyttSpmSvar.placeholder = "Skriv svaret til spørsmålet";
+            alternativ1.hidden = true;
+            alternativ2.hidden = true;
+            alternativ3.hidden = true;
+            imgBilde.hidden = true;
+            buttonForrige.hidden = true;
+            buttonNeste.hidden = true;
+            buttonOk.removeEventListener("click", sjekkSvar);
+            buttonOk.addEventListener("click", leggInnNyttSpm);
+            buttonOk.innerHTML = "Legg til spørsmål";
+            admin.removeEventListener("click", adminFunction);
+            admin.addEventListener("click", normalFunksjoner);
 
+        }
 
+        admin.addEventListener("click", adminFunction);
 
-    </script>
+        //skal kjøre alt som trengs for og komme tilbake til normal kjøring
+        function normalFunksjoner() {
+            buttonOk.removeEventListener("click", leggInnNyttSpm);
+            buttonOk.addEventListener("click", sjekkSvar);
+            alternativ1.hidden = false;
+            alternativ2.hidden = false;
+            alternativ3.hidden = false;
+            imgBilde.hidden = false;
+            nyttSpmSvar.hidden = true;
+            inputsvar.placeholder = "";
+            buttonForrige.hidden = false;
+            buttonNeste.hidden = false;
+            buttonOk.innerHTML = "Skriv svaret";
+            sporsmaal.innerHTML = sporsmaalOgSvar[spmNr].q;
+            admin.hidden = true;
+            admin.removeEventListener("click", normalFunksjoner);
+            admin.addEventListener("click", adminFunction); 
+        }
+
+        document.addEventListener("keydown", e => { 
+            if (e.key.toLowerCase() === "i"
+            && e.ctrlKey) {
+                admin.hidden = false;
+            }
+        });
+
+        
+        // denne funksjonen skal gjøre det som trengs for og legge til et nytt spørsmål.
+        function leggInnNyttSpm()   {  
+           var nyttSpm = { q: inputsvar.value, riktig:nyttSpmSvar.value,a1:"",a2:"",a3:"",bilde:""};
+            sporsmaalOgSvar.push(nyttSpm);
+        }
+        </script>
 </body>
-
 </html>
