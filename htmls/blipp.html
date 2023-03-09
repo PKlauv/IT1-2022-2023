@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        div {
+            position: absolute;
+            height: 50px;
+            background-color: black;
+            width: 50px;
+            border-radius: 50%;
+        }
+
+        #poengElement {
+            text-decoration: underline purple;
+            font-size: 400%;
+        }
+    </style>
+
+<audio id="blippLyd">
+    <source src="../lyd/Blipp.wav" type="audio/mpeg">
+</audio>
+    <input id="farge" type="color">
+    <h1> Få masse poeng!!</h1>
+    <h1 id="poengElement"> Poeng: 0</h1>
+
+    <script>
+        var ny = true;
+        var feilLyd = document.getElementById("feilLyd");
+        var farge = document.getElementById("farge");
+        var poengElement = document.getElementById("poengElement");
+        var poeng = 0;
+
+        var fjern = function (evt) {
+            evt.stopPropagation();
+            if (!ny) {
+                poeng = poeng + 1;
+                poengElement.innerHTML = "Poeng: " + poeng;
+                var minAnim = evt.target.animate([{ transform: "scale(1)" }, { transform: "scale(2)" }], 500);
+
+                minAnim.onfinish = function () {
+                    document.body.removeChild(evt.target);
+                    blippLyd.play();
+                }
+            }
+            ny = false;
+        }
+
+
+        window.onmousemove = function (evt) {
+            ny = true;
+            var mittElement = document.createElement("div");
+            mittElement.style.top = evt.clientY - 25 + "px";
+            mittElement.style.left = evt.clientX - 25 + "px";
+            document.body.appendChild(mittElement);
+            mittElement.style.backgroundColor = farge.value;
+            mittElement.onmouseenter = fjern;
+        }
+        farge.onclick = function (evt) {
+            event.stopPropagation();
+        }
+
+
+    </script>
+</body>
+
+</html>
