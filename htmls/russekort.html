@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Russekort</title>
+
+<style>
+
+
+    #bakgrunnsBilde {
+        position: absolute;
+        top: 17%;
+        height: 220px;
+        width: 180px;
+        margin-left: 610px;
+        background-color: white;
+        transform: rotate(-5deg);
+        border: solid 5px black;
+        z-index: 600;
+        }
+
+    #hovedBilde {
+        position:absolute;
+        top: 18%;
+        height: 220px;
+        width: 180px;
+        margin-left: 620px;
+        background-color: black;
+        transform: rotate(-5deg);
+        border: solid 5px black;
+        z-index:500;
+        }
+
+    #skole {
+        text-align: center;
+    }
+
+    #navn {
+        position: absolute;
+        text-align: right;
+        left: 350px;
+        top: 130px;
+    }
+
+    #adresse {
+        position: absolute;
+        text-align: right;
+        left: 350px;
+        top: 150px
+    }
+
+    #telefonNummer {
+        position: absolute;
+        text-align: right;
+        left: 350px;
+        top: 170px
+    }
+
+    #sitat1 {
+        position: absolute;
+        text-align: right;
+        left: 290px;
+        top: 250px
+    }
+
+    #sitat2 {
+        position: absolute;
+        text-align: right;
+        left: 290px;
+        top: 230px
+    }
+
+    /* kommentar */
+    #rodMal {
+        position: absolute;
+        border: solid 2px;
+        margin-top: 2%;
+        margin-left: 30%;
+        width: 45vw;
+        height: 42vh;
+        background: hsla(0, 51%, 92%, 1);
+        background: radial-gradient(circle, hsla(0, 51%, 92%, 1) 0%, hsla(0, 85%, 56%, 1) 36%);
+        background: -moz-radial-gradient(circle, hsla(0, 51%, 92%, 1) 0%, hsla(0, 85%, 56%, 1) 36%);
+        background: -webkit-radial-gradient(circle, hsla(0, 51%, 92%, 1) 0%, hsla(0, 85%, 56%, 1) 36%);
+        }
+
+        /* kommentar */
+        #blaaMal {
+        position: absolute;
+        border: solid 2px;
+        margin-top: 2%;
+        margin-left: 30%;
+        width: 45vw;
+        height: 42vh;
+        z-index: 400;
+        background: hsla(0, 0%, 100%, 1);
+        background: radial-gradient(circle, hsla(0, 0%, 100%, 1) 0%, hsla(227, 74%, 61%, 1) 36%, hsla(227, 74%, 56%, 1) 100%, hsla(227, 74%, 56%, 1) 100%);
+        background: -moz-radial-gradient(circle, hsla(0, 0%, 100%, 1) 0%, hsla(227, 74%, 61%, 1) 36%, hsla(227, 74%, 56%, 1) 100%, hsla(227, 74%, 56%, 1) 100%);
+        background: -webkit-radial-gradient(circle, hsla(0, 0%, 100%, 1) 0%, hsla(227, 74%, 61%, 1) 36%, hsla(227, 74%, 56%, 1) 100%, hsla(227, 74%, 56%, 1) 100%);
+        }
+
+        img {
+            max-width: 180px;
+            max-height: 300px;
+        }
+    </style>
+
+</head>
+<body>
+   
+    <form action="">
+    <h1>Lag ditt russekort</h1>
+   
+   
+
+    <div id="blaaMal">
+        <h2 id="skole" contenteditable="true">Skole</h3>
+        <h3 id="navn" contenteditable="true">NAVN</h3>
+        <h3 id="adresse" contenteditable="true">Adresse</h3>
+        <h3 id="telefonNummer" contenteditable="true"> Telefonnummer</h3>
+        <h3 id="sitat1" contenteditable="true"> Sitat 1</h3>
+        <h3 id="sitat2" contenteditable="true"> Sitat 2</h3>
+ 
+    </div>
+
+    <div id="hovedBilde"></div>
+    <div id="bakgrunnsBilde">
+        <img src="" id="bilde" alt="">
+    </div>
+
+    <h3>Velg en farge</h3>
+        <label for="farge">Rød:</label>
+        <input type="radio" name="farge" id="roodRadio">
+
+        <label for="farge">Blå:</label>
+        <input type="radio" name="farge" id="blaaRadio">
+
+
+    <h4>Legg til bilde</h4>
+        <label for="mittBilde">Velg en fil:</label>
+        <input type="file" id="inpFilNavn" name="mittBilde">
+
+    <script src="../js/russekort.js"></script>
+  <h2> Endre russekort i russekortet ---></h2>
+</body>
+    
+
+</html>
