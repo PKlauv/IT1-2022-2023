@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ASCII-kryptering</title>
+</head>
+<body>
+    <h1>ASCII-kryptering</h1>
+    <label for="text-input">Tekst:</label>
+    <input type="text" id="text-input"><br>
+    <label for="shift-input">Forskyvning:</label>
+    <input type="number" id="shift-input"><br>
+    <button onclick="encryptText()">Krypter</button>
+    <button onclick="decryptText()">Dekrypter</button><br>
+    <label for="result">Resultat:</label>
+    <input type="text" id="result" readonly>
+    
+    <script>
+        function encryptText() {
+            // Hent tekst og forskyvningsverdi fra input-feltene
+            var text = document.getElementById("text-input").value;
+            var shift = parseInt(document.getElementById("shift-input").value);
+
+            // Krypter teksten
+            var encryptedText = "";
+
+            for (var i = 0; i < text.length; i++) {
+                var char = text[i];
+                // Sjekk om tegnet er en bokstav
+                if (char.match(/[A-Za-z]/)) {
+                    // Finn ASCII-verdien for tegnet
+                    var asciiVal = char.charCodeAt(0);
+                    // Utfør forskyvning ved å legge til shift-verdien
+                    var shiftedAsciiVal = (asciiVal - 65 + shift) % 26 + 65;
+                    // Konverter tilbake til tegn og legg til den krypterte teksten
+                    encryptedText += String.fromCharCode(shiftedAsciiVal);
+                } else {
+                    // Legg til uendret tegn som ikke er bokstaver
+                    encryptedText += char;
+                }
+            }
+
+            // Vis den krypterte teksten
+            document.getElementById("result").value = encryptedText;
+        }
+
+        function decryptText() {
+            // Hent tekst og forskyvningsverdi fra input-feltene
+            var text = document.getElementById("text-input").value;
+            var shift = parseInt(document.getElementById("shift-input").value);
+
+            // Dekrypter teksten
+            var decryptedText = "";
+
+            for (var i = 0; i < text.length; i++) {
+                var char = text[i];
+                // Sjekk om tegnet er en bokstav
+                if (char.match(/[A-Za-z]/)) {
+                    // Finn ASCII-verdien for tegnet
+                    var asciiVal = char.charCodeAt(0);
+                    // Utfør forskyvning ved å trekke fra shift-verdien
+                    var shiftedAsciiVal = (asciiVal - 65 - shift + 26) % 26 + 65;
+                    // Konverter tilbake til tegn og legg til den dekrypterte teksten
+                    decryptedText += String.fromCharCode(shiftedAsciiVal);
+                } else {
+                    // Legg til uendret tegn som ikke er bokstaver
+                    decryptedText += char;
+                }
+            }
+
+            // Vis den dekrypterte teksten
+            document.getElementById("result").value = decryptedText;
+        }
+    </script>
+</body>
+</html>
